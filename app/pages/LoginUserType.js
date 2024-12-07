@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import { RadioButton } from 'react-native-paper'
 
@@ -10,10 +10,13 @@ export default function LoginUserType() {
       <Text>
         برای ثبت نام در کاستومی، نقش خود را در همکاری با ما مشخص کنید.
       </Text>
-      <TouchableOpacity>
+
+      <TouchableOpacity onPress={() => setIsChecked('first')}>
         <Image
           source={require('../../assets/images/Designer.png')}
-          style={[isChecked === 'second' && { tintColor: 'gray' }]}
+          style={[
+            isChecked === 'first' ? styles.removeFilter : styles.filterImage,
+          ]}
         />
         <View className='flex flex-row items-center justify-center'>
           <Text>طراح هستم</Text>
@@ -24,10 +27,13 @@ export default function LoginUserType() {
           />
         </View>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => setIsChecked('second')}>
         <Image
           source={require('../../assets/images/Customer.png')}
-          style={[isChecked === 'first' && { tintColor: 'gray' }]}
+          style={[
+            isChecked === 'second' ? styles.removeFilter : styles.filterImage,
+          ]}
+          className='filter-none saturate-100 brightness-[70%] hue-rotate-[180deg]'
         />
         <View className='flex flex-row items-center justify-center'>
           <Text>مشتری هستم</Text>
@@ -42,3 +48,12 @@ export default function LoginUserType() {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  filterImage: {
+    filter: 'grayscale(100%)',
+  },
+  removeFilter: {
+    filter: 'grayscale(0%)',
+  },
+})

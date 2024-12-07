@@ -9,7 +9,7 @@ const Stack = createNativeStackNavigator()
 function Navigation() {
   return (
     <Stack.Navigator
-      initialRouteName='Login'
+      initialRouteName='Home'
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name='Home' component={Home} />
